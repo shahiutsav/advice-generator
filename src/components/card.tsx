@@ -5,7 +5,7 @@ import clsx from "clsx";
 import DividerIcon from "@/../public/icons/pattern-divider-desktop.svg";
 import DividerMobielIcon from "@/../public/icons/pattern-divider-mobile.svg";
 import DiceIcon from "@/../public/icons/icon-dice.svg";
-import React, { Suspense } from "react";
+import React from "react";
 import { getRandomAdvice } from "@/data/data";
 
 type Slip = {
