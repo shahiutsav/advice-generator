@@ -48,7 +48,7 @@ export default function Card() {
         advice #{slip?.id}
       </h1>
       <p className="max-w-[440px] text-center text-[28px] leading-snug text-light-cyan">
-        "{slip?.advice}"
+        &quot;{slip?.advice}&quot;
       </p>
       <Divider />
       <div className="absolute bottom-0 translate-y-1/2">
