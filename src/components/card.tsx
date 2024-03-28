@@ -3,6 +3,7 @@
 import style from "./card.module.scss";
 import clsx from "clsx";
 import DividerIcon from "@/../public/icons/pattern-divider-desktop.svg";
+import DividerMobielIcon from "@/../public/icons/pattern-divider-mobile.svg";
 import DiceIcon from "@/../public/icons/icon-dice.svg";
 import React, { Suspense } from "react";
 import { getRandomAdvice } from "@/data/data";
@@ -42,7 +43,7 @@ export default function Card() {
   };
 
   return (
-    <div className="relative flex w-[540px] flex-col items-center rounded-2xl bg-dark-grayish-blue shadow-2xl">
+    <div className="relative flex w-5/6 flex-col items-center rounded-2xl bg-dark-grayish-blue px-4 shadow-2xl sm:w-[540px]">
       <h1 className="mb-8 mt-12 text-xs uppercase tracking-[0.4em] text-neon-green">
         advice #{slip?.id}
       </h1>
@@ -60,7 +61,8 @@ export default function Card() {
 function Divider() {
   return (
     <div className="mb-[72px] mt-10">
-      <DividerIcon />
+      <DividerIcon className="hidden sm:block" />
+      <DividerMobielIcon className="block sm:hidden" />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function Home() {
 
 function Footer() {
   return (
-    <footer className="fixed bottom-5 text-xs font-light tracking-widest text-light-cyan">
+    <footer className="fixed bottom-5 text-center text-xs font-light tracking-widest text-light-cyan">
       Challenge by{" "}
       <a
         className="underline"
@@ -21,7 +21,7 @@ function Footer() {
       >
         Frontend Mentor
       </a>
-      . Coded by{" "}
+      .<br className="block sm:hidden" /> Coded by{" "}
       <a
         className="underline"
         href="https://github.com/shahiutsav"
