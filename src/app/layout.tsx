@@ -16,6 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="keywords"
+          content="advice, advice generator"
+          property="keywords"
+        />
+      </head>
       <body className={manrope.className}>{children}</body>
     </html>
   );

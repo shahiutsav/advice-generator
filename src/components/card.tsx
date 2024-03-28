@@ -74,6 +74,7 @@ function RandomizeButton({
         isLoading && "cursor-not-allowed",
         style.button,
       )}
+      aria-label="Randomize advice"
       onClick={onClick}
     >
       <DiceIcon className={clsx(isLoading && "animate-spin")} />
