@@ -19,18 +19,10 @@ export default function Card() {
 
   function fetchAdvice() {
     setIsLoading(true);
-    getRandomAdvice()
-      .then((data) => {
-        setSlip(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setSlip({
-          id: error,
-          advice: "Oops! something went wrong when fetching the advice",
-        });
-        setIsLoading(false);
-      });
+    getRandomAdvice().then((data) => {
+      setSlip(data);
+      setIsLoading(false);
+    });
   }
 
   React.useEffect(() => {
