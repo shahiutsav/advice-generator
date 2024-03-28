@@ -2,4 +2,8 @@
   &:hover {
     box-shadow: 0 0 30px 2px hsl(150, 100%, 66%);
   }
+
+  &:disabled:hover {
+    box-shadow: none;
+  }
 }

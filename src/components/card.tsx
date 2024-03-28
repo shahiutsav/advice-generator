@@ -4,7 +4,7 @@ import style from "./card.module.scss";
 import clsx from "clsx";
 import DividerIcon from "@/../public/icons/pattern-divider-desktop.svg";
 import DiceIcon from "@/../public/icons/icon-dice.svg";
-import React from "react";
+import React, { Suspense } from "react";
 import { getRandomAdvice } from "@/data/data";
 
 type Slip = {
@@ -14,18 +14,30 @@ type Slip = {
 
 export default function Card() {
   const [slip, setSlip] = React.useState<Slip>();
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const fetchAdvice = () => {
-    getRandomAdvice().then((data) => {
-      setSlip(data);
-    });
-  };
+  function fetchAdvice() {
+    setIsLoading(true);
+    getRandomAdvice()
+      .then((data) => {
+        setSlip(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setSlip({
+          id: error,
+          advice: "Oops! something went wrong when fetching the advice",
+        });
+        setIsLoading(false);
+      });
+  }
 
   React.useEffect(() => {
     fetchAdvice();
   }, []);
 
   const handleClick = () => {
+    setIsLoading(!isLoading);
     fetchAdvice();
   };
 
@@ -39,7 +51,7 @@ export default function Card() {
       </p>
       <Divider />
       <div className="absolute bottom-0 translate-y-1/2">
-        <RandomizeButton onClick={handleClick} />
+        <RandomizeButton onClick={handleClick} isLoading={isLoading} />
       </div>
     </div>
   );
@@ -53,16 +65,24 @@ function Divider() {
   );
 }
 
-function RandomizeButton({ onClick }: { onClick?: () => void }) {
+function RandomizeButton({
+  onClick,
+  isLoading,
+}: {
+  onClick?: () => void;
+  isLoading?: boolean;
+}) {
   return (
     <button
+      disabled={isLoading}
       className={clsx(
-        `flex h-16 w-16 items-center justify-center rounded-full bg-neon-green`,
+        `flex h-16 w-16 items-center justify-center rounded-full bg-neon-green disabled:opacity-50`,
+        isLoading && "cursor-not-allowed",
         style.button,
       )}
       onClick={onClick}
     >
-      <DiceIcon />
+      <DiceIcon className={clsx(isLoading && "animate-spin")} />
     </button>
   );
 }
